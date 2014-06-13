@@ -4,7 +4,13 @@ gutil = require 'gulp-util'
 mocha = require 'gulp-mocha'
 rimraf = require 'rimraf'
 
+errorOccurred = no
+process.once 'exit', (code) ->
+  if errorOccurred and code == 0
+    process.exit 1
+
 handleError = (err) ->
+  errorOccurred = yes
   gutil.log err
   @emit 'end'
 
