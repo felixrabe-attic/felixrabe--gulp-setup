@@ -11,6 +11,10 @@ process.once 'exit', (code) ->
 
 handleError = (err) ->
   errorOccurred = yes
+  if err.name and err.stack
+    err = gutil.colors.red("#{err.plugin}: #{err.name}: ") +
+          gutil.colors.bold.red("#{err.message}") +
+          "\n#{err.stack}"
   gutil.log err
   @emit 'end'
 
