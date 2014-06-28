@@ -1,6 +1,7 @@
 {
   "main": "./lib",
   "scripts": {
+    "prepublish": "gulp build",
     "test": "gulp test"
   },
   "devDependencies": {
